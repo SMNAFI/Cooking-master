@@ -16,13 +16,13 @@ const searchFood = () => {
     }
 }
 
-
+// if user enter only single letter 
 const findFoodByFirstLetter = inputValue => {
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?f=${inputValue}`;
     fetch(url)
         .then(res => res.json())
         .then(data => {
-            displayMatchedFoods(data.meals);
+            searchResult(data.meals);
         })
         .catch(() => {
             alert("Sorry! We can't find any food for you.");
@@ -30,12 +30,13 @@ const findFoodByFirstLetter = inputValue => {
 }
 
 
+// if user enter full name of food 
 const findFoodByName = inputValue => {
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${inputValue}`;
     fetch(url)
         .then(res => res.json())
         .then(data => {
-            displayMatchedFoods(data.meals);
+            searchResult(data.meals);
         })
         .catch(() => {
             alert("Sorry! We can't find any food for you.");
@@ -43,13 +44,15 @@ const findFoodByName = inputValue => {
 }
 
 
-const displayMatchedFoods = meals => {
+// processing of search result
+const searchResult = meals => {
     meals.forEach(meal => {
         displayItem(meal.strMeal);
     });
 }
 
 
+// display food item
 const displayItem = mealName => {
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${mealName}`;
     const container = document.getElementById('container');
@@ -67,6 +70,7 @@ const displayItem = mealName => {
 }
 
 
+// display clicked food item with ingredients
 const displayIngredients = mealName => {
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${mealName}`;
     fetch(url)
