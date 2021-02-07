@@ -10,9 +10,7 @@ const searchFood = () => {
         if (inputValue.length == 1) {
             findFoodByFirstLetter(inputValue)
         }
-        else {
-            findFoodByName(inputValue);
-        }
+        findFoodByName(inputValue);
     }
 }
 
@@ -23,9 +21,6 @@ const findFoodByFirstLetter = inputValue => {
         .then(res => res.json())
         .then(data => {
             searchResult(data.meals);
-        })
-        .catch(() => {
-            alert("Sorry! We can't find any food for you.");
         })
 }
 
